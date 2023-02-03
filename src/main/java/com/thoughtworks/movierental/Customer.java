@@ -24,20 +24,17 @@ public class Customer {
         int frequentRenterPoints = 0;
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
-            double rentalAmount = rental.amount();
+            totalAmount += rental.amount();
+        }
+        for (Rental rental : rentals) {
             frequentRenterPoints += rental.frequentRenterPoints();
-            result = getResult(result, rental, rentalAmount);
-            totalAmount += rentalAmount;
+        }
+        for (Rental rental : rentals) {
+            result = rental.updateResult(result);
         }
         result += "Amount owed is " + totalAmount + "\n";
         result += "You earned " + frequentRenterPoints
                 + " frequent renter points";
-        return result;
-    }
-
-    private String getResult(String result, Rental rental, double rentalAmount) {
-        result += "\t" + rental.getMovie().getTitle() + "\t" +
-                rentalAmount + "\n";
         return result;
     }
 }

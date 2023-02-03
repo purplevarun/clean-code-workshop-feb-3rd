@@ -44,4 +44,8 @@ public class Rental {
         }
         return thisAmount;
     }
+
+    public String updateResult(String result) {
+        return result + "\t" + movie.getTitle() + "\t" + amount() + "\n";
+    }
 }
