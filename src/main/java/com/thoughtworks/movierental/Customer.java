@@ -28,11 +28,11 @@ public class Customer {
     }
 
     private String body() {
-        String body = new String();
+        StringBuilder body = new StringBuilder();
         for (Rental rental : rentals) {
-            body += "\t" + rental.getMovie().getTitle() + "\t" + rental.amount() + "\n";
+            body.append("\t").append(rental.getMovie().getTitle()).append("\t").append(rental.amount()).append("\n");
         }
-        return body;
+        return body.toString();
     }
 
     private String footer() {
