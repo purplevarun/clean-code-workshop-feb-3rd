@@ -20,14 +20,25 @@ public class Customer {
     }
 
     public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
+        return header() + body() + footer();
+    }
+
+    private String header() {
+        return "Rental Record for " + getName() + "\n";
+    }
+
+    private String body() {
+        String body = new String();
         for (Rental rental : rentals) {
-            result += "\t" + rental.getMovie().getTitle() + "\t" + rental.amount() + "\n";
+            body += "\t" + rental.getMovie().getTitle() + "\t" + rental.amount() + "\n";
         }
-        result += "Amount owed is " + totalAmount() + "\n";
-        result += "You earned " + frequentRenterPoints()
+        return body;
+    }
+
+    private String footer() {
+        return "Amount owed is " + totalAmount() + "\n"
+                + "You earned " + frequentRenterPoints()
                 + " frequent renter points";
-        return result;
     }
 
     private int frequentRenterPoints() {
