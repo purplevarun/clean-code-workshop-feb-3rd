@@ -15,30 +15,12 @@ public class Customer {
         rentals.add(arg);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String statement() {
-        return header() + body() + footer();
+        return new TextStatement(name, rentals, totalAmount(), frequentRenterPoints()).generate();
     }
 
-    private String header() {
-        return "Rental Record for " + getName() + "\n";
-    }
-
-    private String body() {
-        StringBuilder body = new StringBuilder();
-        for (Rental rental : rentals) {
-            body.append("\t").append(rental.getMovie().getTitle()).append("\t").append(rental.amount()).append("\n");
-        }
-        return body.toString();
-    }
-
-    private String footer() {
-        return "Amount owed is " + totalAmount() + "\n"
-                + "You earned " + frequentRenterPoints()
-                + " frequent renter points";
+    public String htmlStatement() {
+        return new HtmlStatement(name, rentals, totalAmount(), frequentRenterPoints()).generate();
     }
 
     private int frequentRenterPoints() {
@@ -56,4 +38,5 @@ public class Customer {
         }
         return totalAmount;
     }
+
 }
